@@ -34,9 +34,9 @@ pipeline {
         }
 
         stage('Push to DockerHub') {
-            when {
-                branch 'main'
-            }
+            // when {
+            //     branch 'main'
+            // }
             steps {
                 script {
                     // Push the Docker image to DockerHub if tests are successful
@@ -47,9 +47,9 @@ pipeline {
         }
 
         stage('Deploy to Local Server') {
-            when {
-                branch 'main'
-            }
+            // when {
+            //     branch 'main'
+            // }
             steps {
                 script {
                     echo "Pulling latest Docker image..."
