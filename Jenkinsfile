@@ -60,7 +60,8 @@ pipeline {
                     bat "docker stop %CONTAINER_NAME% || echo Container not running"
                     bat "docker rm %CONTAINER_NAME% || echo No container to remove"
                     // Run new container persistently
-                    bat "docker run -d -p 5000:5000 --name %CONTAINER_NAME% %DOCKER_IMAGE%:latest"
+                    bat "docker run -d -p 5000:5000 --name %CONTAINER_NAME% %DOCKER_IMAGE%:latest gunicorn --bind 0.0.0.0:5000 run:app"
+
                 }
             }
         }
