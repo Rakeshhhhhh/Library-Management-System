@@ -4,7 +4,7 @@ pipeline {
     environment {
         DOCKER_IMAGE = 'rakesh80/library-management-system:latest'
         DOCKER_HUB_CREDENTIALS = credentials('dockerhub-credentials')
-        CONTAINER_NAME = 'library-management-system-container'
+        CONTAINER_NAME = 'lmsss'
     }
 
     stages {
@@ -52,16 +52,17 @@ pipeline {
             }
             steps {
                 script {
-                    // Deploy the container on the local server
-                     
-                    // Pull latest image
+                    echo "Pulling latest Docker image..."
                     bat "docker pull %DOCKER_IMAGE%:latest"
-                    // Stop and remove old container if running
-                    bat "docker stop %CONTAINER_NAME% || echo Container not running"
-                    bat "docker rm %CONTAINER_NAME% || echo No container to remove"
-                    // Run new container persistently
-                    bat "docker run -d -p 5000:5000 --name %CONTAINER_NAME% %DOCKER_IMAGE%:latest gunicorn --bind 0.0.0.0:5000 run:app"
 
+                    echo "Stopping any old container..."
+                    bat "docker stop %CONTAINER_NAME% || echo Container not running"
+
+                    echo "Removing old container..."
+                    bat "docker rm %CONTAINER_NAME% || echo No container to remove"
+
+                    echo "Running new container with Gunicorn..."
+                    bat "docker run -d -p 5000:5000 --name %CONTAINER_NAME% %DOCKER_IMAGE%:latest gunicorn --bind 0.0.0.0:5000 run:app"
                 }
             }
         }
