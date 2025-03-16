@@ -1,0 +1,58 @@
+{% extends 'layout.html' %}
+{% block body %}
+<div class="px-4 py-5 my-5 text-center">
+    <h1 class="display-5 fw-bold">Library Management System</h1>
+    <div class="col-lg-6 mx-auto">
+        <p class="lead mb-4">
+            A streamlined Library Management System designed to simplify book inventory, member management, and transaction tracking. 
+            
+            
+            </a>It empowers librarians to efficiently manage operations with ease and accuracy.
+        </p>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+            <a href="{{ url_for('report_routes.reports') }}" class="btn btn-primary btn-lg px-4">Reports</a>
+            <a href="{{ url_for('book_routes.list_books') }}" class="btn btn-outline-secondary btn-lg px-4">Books</a>
+            <a href="{{ url_for('member_routes.list_members') }}" class="btn btn-outline-secondary btn-lg px-4">Members</a>
+            <a href="{{ url_for('transaction_routes.list_transactions') }}" class="btn btn-outline-secondary btn-lg px-4">Transactions</a>
+        </div>
+    </div>
+</div>
+
+<!-- Quote Boards Section -->
+<div class="container my-5">
+    <h2 class="text-center mb-4">Words to Inspire</h2>
+    <div class="row justify-content-center">
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-lg p-3 mb-5 bg-white rounded">
+                <div class="card-body">
+                    <blockquote class="blockquote mb-0">
+                        <p>"A room without books is like a body without a soul."</p>
+                        <footer class="blockquote-footer mt-2">Marcus Tullius Cicero</footer>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-lg p-3 mb-5 bg-white rounded">
+                <div class="card-body">
+                    <blockquote class="blockquote mb-0">
+                        <p>"The only thing that you absolutely have to know, is the location of the library."</p>
+                        <footer class="blockquote-footer mt-2">Albert Einstein</footer>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-lg p-3 mb-5 bg-white rounded">
+                <div class="card-body">
+                    <blockquote class="blockquote mb-0">
+                        <p>"Today a reader, tomorrow a leader."</p>
+                        <footer class="blockquote-footer mt-2">Margaret Fuller</footer>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

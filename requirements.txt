@@ -1,0 +1,6 @@
+Flask==2.3.2
+Flask-SQLAlchemy==3.0.5
+WTForms==3.0.1
+flask_wtf
+pytest
+werkzeug==2.3.8
