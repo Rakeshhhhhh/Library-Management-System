@@ -52,7 +52,7 @@ pipeline {
             steps {
                 script {
                     echo "Pulling latest Docker image..."
-                    bat "docker pull %DOCKER_IMAGE%:latest"
+                    bat "docker pull %DOCKER_IMAGE%"
 
                     echo "Stopping any old container..."
                     bat "docker stop %CONTAINER_NAME% || echo Container not running"
