@@ -5,3 +5,4 @@ flask_wtf
 pytest
 werkzeug==2.3.8
 requests
+gunicorn
