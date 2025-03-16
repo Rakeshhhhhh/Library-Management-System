@@ -18,7 +18,7 @@ pipeline {
             steps {
                 script {
                     // Build the Docker image
-                    bat 'docker build -t $DOCKER_IMAGE .'
+                    bat "docker build -t %DOCKER_IMAGE% ."
                 }
             }
         }
@@ -27,7 +27,7 @@ pipeline {
             steps {
                 script {
                     // Run the unit tests inside the container
-                    bat 'docker run --rm $DOCKER_IMAGE pytest tests/'
+                    bat "docker run --rm %DOCKER_IMAGE% pytest tests/"
                 }
             }
         }
@@ -39,8 +39,8 @@ pipeline {
             steps {
                 script {
                     // Push the Docker image to DockerHub if tests are successful
-                    bat "docker login -u ${DOCKER_HUB_CREDENTIALS_USR} -p ${DOCKER_HUB_CREDENTIALS_PSW}"
-                    bat 'docker push $DOCKER_IMAGE'
+                    bat "docker login -u %DOCKER_HUB_CREDENTIALS_USR% -p %DOCKER_HUB_CREDENTIALS_PSW%"
+                    bat "docker push %DOCKER_IMAGE%"
                 }
             }
         }
@@ -52,8 +52,8 @@ pipeline {
             steps {
                 script {
                     // Deploy the container on the local server
-                    bat 'docker pull $DOCKER_IMAGE'
-                    bat 'docker run -d -p 5000:5000 $DOCKER_IMAGE'
+                    bat "docker pull %DOCKER_IMAGE%"
+                    bat "docker run -d -p 5000:5000 %DOCKER_IMAGE%"
                 }
             }
         }
