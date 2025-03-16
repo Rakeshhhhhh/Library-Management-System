@@ -4,3 +4,4 @@ WTForms==3.0.1
 flask_wtf
 pytest
 werkzeug==2.3.8
+requests==2.31.0
