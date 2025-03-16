@@ -38,9 +38,8 @@ pipeline {
             //     branch 'main'
             // }
             steps {
-                script {
-                    // Push the Docker image to DockerHub if tests are successful
-                    bat "docker login -u %DOCKER_HUB_CREDENTIALS_USR% -p %DOCKER_HUB_CREDENTIALS_PSW%"
+                withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
+                    bat "docker login -u %DOCKER_USERNAME% -p %DOCKER_PASSWORD%"
                     bat "docker push %DOCKER_IMAGE%"
                 }
             }
