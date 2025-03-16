@@ -53,15 +53,14 @@ pipeline {
             steps {
                 script {
                     // Deploy the container on the local server
-                     // Stop and remove old container if running
+                     
+                    // Pull latest image
+                    bat "docker pull %DOCKER_IMAGE%:latest"
+                    // Stop and remove old container if running
                     bat "docker stop %CONTAINER_NAME% || echo Container not running"
                     bat "docker rm %CONTAINER_NAME% || echo No container to remove"
-
-                    // Pull latest image
-                    bat "docker pull %DOCKER_IMAGE%"
-
                     // Run new container persistently
-                    bat "docker run -d --name %CONTAINER_NAME% -p 5000:5000 %DOCKER_IMAGE%"
+                    bat "docker run -d -p 5000:5000 --name %CONTAINER_NAME% %DOCKER_IMAGE%:latest"
                 }
             }
         }
