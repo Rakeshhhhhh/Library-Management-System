@@ -33,17 +33,17 @@ pipeline {
             }
         }
 
-        stage('Push to DockerHub') {
-            // when {
-            //     branch 'main'
-            // }
-            steps {
-                withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
-                    bat "docker login -u %DOCKER_USERNAME% -p %DOCKER_PASSWORD%"
-                    bat "docker push %DOCKER_IMAGE%"
-                }
-            }
-        }
+        // stage('Push to DockerHub') {
+        //     // when {
+        //     //     branch 'main'
+        //     // }
+        //     steps {
+        //         withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
+        //             bat "docker login -u %DOCKER_USERNAME% -p %DOCKER_PASSWORD%"
+        //             bat "docker push %DOCKER_IMAGE%"
+        //         }
+        //     }
+        // }
 
         stage('Deploy to Local Server') {
             // when {
