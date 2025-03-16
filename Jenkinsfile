@@ -4,6 +4,7 @@ pipeline {
     environment {
         DOCKER_IMAGE = 'rakesh80/library-management-system:latest'
         DOCKER_HUB_CREDENTIALS = credentials('dockerhub-credentials')
+        CONTAINER_NAME = 'library-management-system-container'
     }
 
     stages {
@@ -52,8 +53,15 @@ pipeline {
             steps {
                 script {
                     // Deploy the container on the local server
+                     // Stop and remove old container if running
+                    bat "docker stop %CONTAINER_NAME% || echo Container not running"
+                    bat "docker rm %CONTAINER_NAME% || echo No container to remove"
+
+                    // Pull latest image
                     bat "docker pull %DOCKER_IMAGE%"
-                    bat "docker run -d -p 5000:5000 %DOCKER_IMAGE%"
+
+                    // Run new container persistently
+                    bat "docker run -d --name %CONTAINER_NAME% -p 5000:5000 %DOCKER_IMAGE%"
                 }
             }
         }
